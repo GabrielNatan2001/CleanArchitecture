@@ -22,12 +22,12 @@ namespace CleanArchitecture.Domain.Entities
         }
 
 
-        public ICollection<Product> Products { get; set; }
-
         public void Update(string name)
         {
             ValidadteDomain(name);
         }
+
+        public ICollection<Product> Products { get; set; }
 
         public void ValidadteDomain(string name)
         {

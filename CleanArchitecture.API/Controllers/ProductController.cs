@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Application.Interfaces;
+﻿using CleanArchitecture.Application.DTOs;
+using CleanArchitecture.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,15 +20,39 @@ namespace CleanArchitecture.API.Controllers
         public async Task<ActionResult> Get()
         {
             var result = await _service.GetProductsAsync();
+            if (result == null)
+                return NotFound();
             return Ok(result);
         }
 
-        [HttpGet]
-        [Route("GetById/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
             var result = await _service.GeByIdAsync(id);
+            if (result == null)
+                return NotFound();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Create(ProductDTO request)
+        {
+            await _service.Add(request);
+            return Ok(request);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Update(ProductDTO request)
+        {
+            await _service.Update(request);
+            return Ok(request);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Update(int id)
+        {
+            await _service.Remove(id);
+            return Ok();
         }
     }
 }

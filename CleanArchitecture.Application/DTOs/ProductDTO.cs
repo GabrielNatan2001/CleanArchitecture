@@ -1,7 +1,10 @@
 ﻿using CleanArchitecture.Domain.Entities;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 namespace CleanArchitecture.Application.DTOs
 {
@@ -9,37 +12,38 @@ namespace CleanArchitecture.Application.DTOs
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "The name is required")]
+        [Required(ErrorMessage = "The Name is Required")]
         [MinLength(3)]
-        [MaxLength(150)]
+        [MaxLength(100)]
         [DisplayName("Name")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        [Required(ErrorMessage = "The description is required")]
-        [MinLength(3)]
+        [Required(ErrorMessage = "The Description is Required")]
+        [MinLength(5)]
         [MaxLength(200)]
         [DisplayName("Description")]
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
-        [Required(ErrorMessage = "The price is required")]
+        [Required(ErrorMessage = "The Price is Required")]
         [Column(TypeName = "decimal(18,2)")]
-        [DisplayFormat(DataFormatString ="{0:C2}")]
+        [DisplayFormat(DataFormatString = "{0:C2}")]
         [DataType(DataType.Currency)]
         [DisplayName("Price")]
-        public decimal Price { get; private set; }
+        public decimal Price { get; set; }
 
-        [Required(ErrorMessage = "The stock is required")]
+        [Required(ErrorMessage = "The Stock is Required")]
         [Range(1, 9999)]
         [DisplayName("Stock")]
-        public int Stock { get; private set; }
+        public int Stock { get; set; }
 
-        [Required(ErrorMessage = "The image is required")]
         [MaxLength(250)]
-        [DisplayName("Image")]
-        public string Image { get; private set; }
+        [DisplayName("Product Image")]
+        public string Image { get; set; }
+
+        [JsonIgnore]
+        public Category? Category { get; set; }
 
         [DisplayName("Categories")]
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
     }
 }
