@@ -1,0 +1,5 @@
+ - Domain: Modelo de domínio, regras de negócio, interfaces
+ - Application: Regras de domínios da aplicação, mapeamentos, serviços, DTOs, CQRS
+ - Data: EF Core, Contexto, Configurações, Migrations, Repository
+ - Infra/IoC: Dependecy Injection, registros dos serviços, tempo de vida
+ - UI: MVC, Controller, Views, Filtros, ViewModels, API
