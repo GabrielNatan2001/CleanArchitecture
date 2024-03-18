@@ -29,13 +29,5 @@ namespace CleanArchitecture.API.Controllers
             var result = await _service.GeByIdAsync(id);
             return Ok(result);
         }
-
-        [HttpGet]
-        [Route("GetProductCategory/{id}")]
-        public async Task<ActionResult> GetProductCategory(int id)
-        {
-            var result = await _service.GetProductCategoryAsync(id);
-            return Ok(result);
-        }
     }
 }

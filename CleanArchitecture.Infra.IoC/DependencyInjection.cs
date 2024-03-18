@@ -30,6 +30,9 @@ namespace CleanArchitecture.Infra.IoC
 
             services.AddAutoMapper(typeof(DomainToDtoMappingProfile));
 
+            var myhandlers = AppDomain.CurrentDomain.Load("CleanArchitecture.Application");
+            services.AddMediatR(c=> c.RegisterServicesFromAssemblies(myhandlers));
+
             return services;
         }
     }
