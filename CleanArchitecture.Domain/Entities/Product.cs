@@ -13,19 +13,19 @@ namespace CleanArchitecture.Domain.Entities
         public string Description { get; private set; }
         public decimal Price { get; private set; }
         public int Stock { get; private set; }
-        public string Image { get; private set; }
+        public string? Image { get; private set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-        public Product(string name, string description, decimal price, int stock, string imagem)
+        public Product(string name, string description, decimal price, int stock, string image)
         {
-            ValidateDomain(name, description, price, stock, imagem);
+            ValidateDomain(name, description, price, stock, image);
         }
-        public Product(int id, string name, string description, decimal price, int stock, string imagem)
+        public Product(int id, string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(id < 0, "Invalid id value");
             Id = id;
-            ValidateDomain(name, description, price, stock, imagem);
+            ValidateDomain(name, description, price, stock, image);
         }
 
         public void Update(string name, string description, decimal price, int stock, string imagem, int categoryId)
@@ -34,7 +34,7 @@ namespace CleanArchitecture.Domain.Entities
             CategoryId = categoryId;
         }
 
-        private void ValidateDomain(string name, string description, decimal price, int stock, string imagem)
+        private void ValidateDomain(string name, string description, decimal price, int stock, string image)
         {
             DomainExceptionValidation.When(string.IsNullOrEmpty(name), "Invalid name is required");
 
@@ -46,13 +46,13 @@ namespace CleanArchitecture.Domain.Entities
             DomainExceptionValidation.When(price < 0, "Invalid price value");
             DomainExceptionValidation.When(stock < 0, "Invalid stock value");
 
-            DomainExceptionValidation.When(imagem?.Length > 250, "Invalid imagem, too long, maximu 250 characters");
+            DomainExceptionValidation.When(image?.Length > 250, "Invalid imagem, too long, maximu 250 characters");
 
             Name = name;
             Description = description;
             Price = price;
             Stock = stock;
-            Image = imagem;
+            Image = image;
         }
     }
 }

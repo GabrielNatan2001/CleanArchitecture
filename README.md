@@ -11,3 +11,8 @@
  - Data: dependência com o projeto domain
  - IoC: dependência com os projetos domain, Application, Data
  - UI/API: dependência com o projeto IoC
+
+ Registros de Dependência
+ - Transient(AddTrasient) = Cria os objetos a cada vez que forem solicitados
+ - Scoped(AddScoped) = Cria os objetos uma vez por solicitação
+ - Singleton(AddSingleton) = Cria os objetos apenas na primeira vez que for solicitado
